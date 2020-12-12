@@ -57,9 +57,13 @@
                 },
                 remove: function (index) {
                     this.list.splice(index, 1);
+                    if (this.list.length === 0) {
+                        this.inputValue = '';
+                    }
                 },
                 clearAll: function () {
                     this.list = [];
+                    this.inputValue = '';
                 }
             }
         })
