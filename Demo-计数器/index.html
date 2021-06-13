@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+    <link rel="stylesheet" href="./CSS/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <img src="./images/logo.png" alt="logo">
+        <img src="./images/logo.png" alt="logo" class="r-img">
+        <div class="input-num">
+            <button @click='sub'>-</button>
+            <span>{{num}}</span>
+            <button @click='add'>+</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const App = new Vue({
+            el: '#app',
+            data: {
+                num: 0,
+                min: 0,
+                max: 10
+            },
+            methods: {
+                add: function () {
+                    if (this.num >= this.max) {
+                        alert('超出显示范围！')
+                    } else {
+                        this.num++;
+                    }
+                },
+                sub: function () {
+                    if (this.num <= this.min) {
+                        alert('只能计数自然数！')
+                    } else {
+                        this.num--;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

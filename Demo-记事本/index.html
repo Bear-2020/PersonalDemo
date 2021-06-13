@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记事本</title>
+    <link rel="stylesheet" href="./CSS/index.css">
+</head>
+
+<body>
+    <!-- 主体区域 -->
+    <section id="todoapp">
+        <!-- 输入框 -->
+        <header class="header">
+            <h1>NoteBook</h1>
+            <input v-model='inputValue' type="text" class="new-todo" autofocus='autofocus' autocomplete="off"
+                placeholder="请输入待办事项" @keyup.enter='add'>
+        </header>
+        <!-- 列表区域 -->
+        <section class="main">
+            <ul class="todo-list">
+                <li v-for='(item,index) in list' :key='index' class="todo">
+                    <div class="view">
+                        <span class="index">{{index+1}}.</span>
+                        <label for="">{{item}}</label>
+                        <button @click='remove(index)' class="destroy"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <!-- 统计和清空 -->
+        <footer class="footer">
+            <span class="todo-count" v-if="list.length != 0">
+                <strong>{{list.length}}</strong>
+                items left
+            </span>
+            <button class="clear-completed" @click="clearAll" v-show="list.length != 0">Clear All</button>
+        </footer>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const App = new Vue({
+            el: '#todoapp',
+            data: {
+                inputValue: '',
+                list: [
+                    '一起来看流星雨',
+                    '一起再看流星雨',
+                    '一起又看流星雨'
+                ],
+                message: '暂无更多信息！'
+            },
+            methods: {
+                add: function () {
+                    this.list.push(this.inputValue);
+                },
+                remove: function (index) {
+                    this.list.splice(index, 1);
+                    if (this.list.length === 0) {
+                        this.inputValue = '';
+                    }
+                },
+                clearAll: function () {
+                    this.list = [];
+                    this.inputValue = '';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

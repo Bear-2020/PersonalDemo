@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>图片切换</title>
+    <link rel="stylesheet" href="./CSS/index.css">
+</head>
+
+<body>
+    <div id="mask">
+        <div class="center">
+            <h2 class="title">
+                <img src="./images/logo.png" alt="">
+                图片切换
+            </h2>
+            <!-- 图片 -->
+            <img :src="imgArr[index]" alt="" />
+            <!-- 左箭头 -->
+            <!-- <a href="javascript:void(0)" v-show="index!=0" @click="prev" class="left">
+        <img src="./images/prev.png" alt="" />
+      </a> -->
+            <a href="javascript:void(0)" v-if="index!=0" @click="prev" class="left">
+                <img src="./images/prev.png" alt="" />
+            </a>
+            <!-- 右箭头 -->
+            <a href="javascript:void(0)" v-show="index<imgArr.length-1" @click="next" class="right">
+                <img src="./images/next.png" alt="" />
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#mask",
+            data: {
+                imgArr: [
+                    "./images/bing01.jpg",
+                    "./images/bing02.jpg",
+                    "./images/bing03.jpg",
+                    "./images/bing04.jpg",
+                    "./images/bing05.jpg",
+                    "./images/bing06.jpg",
+                    "./images/bing07.jpg",
+                    "./images/bing08.jpg",
+                    "./images/bing09.jpg",
+                    "./images/bing10.jpg",
+                    "./images/bing11.jpg",
+                ],
+                index: 0
+            },
+            methods: {
+                prev: function () {
+                    this.index--;
+                },
+                next: function () {
+                    this.index++;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
